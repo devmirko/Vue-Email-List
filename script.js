@@ -1,16 +1,25 @@
 const emailApp = new Vue ({
     el : "#container",
     data : {
-        email : 0,
+        emails : []
     },
-    mounted(){
-        axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
+    methods : {
+        pushRandomEmail() {
+            axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
         .then((result) => {
             const risultato = result.data.response;
-            console.log(risultato);
-            this.email = risultato;
+            this.emails.push(risultato);
+        })
+
+        },
+        tenRandom() {
+            for (let i = 0; i < 10; i++) {
+                this.pushRandomEmail();
+                
+            }
         }
-        )
-    }
-    
+    },
+    mounted() {
+        this.tenRandom();
+    }  
 })
