@@ -9,7 +9,7 @@
 <body>
     <div id="container">
         <h2>lista di email generate</h2>
-        <ul>
+        <ul v-if="emails.length >= 10">
             <li v-for="email in emails">{{email}}</li>
         </ul>
     </div>
